@@ -29,12 +29,21 @@ In this environment, there is no DHCP (Dynamic Host Configuration Protocol) pres
   - Challenge: Find out what the `lo` device is.
 
 - Run the command
-```
-sudo systemctl disable dhcpcd.service
-sudo systemctl stop dhcpcd.service
-```
-
-  - Raspbian, the operating system that is on these Pi's, has a service that automatically runs on boot called dhcpcd. This service is used to attempt to get an IP address from a DHCP server. This needs to be disabled
+  ```
+  sudo systemctl disable dhcpcd.service
+  sudo systemctl stop dhcpcd.service
+  ```
+  *Raspbian, the operating system that is on these Pi's, has a service that automatically runs on boot called dhcpcd. This service is used to attempt to get an IP address from a DHCP server. This needs to be disabled so that any static ip addres that is set doesn't get overwritten.*
 
 - Set up the IP addresses for each Pi manually
-    - Navigate to /etc/network/interfaces
+
+  Open the file `/etc/network/interfaces` in the editor of your choice. In this file you need to make an entry for the network device and the configuration you want to give it.
+
+  Firstly, look for any lines that already mention the interface that you want to use (in this case `eth0`) and delete it. Create a new block of lines that look like this:
+
+  ```
+  auto <interface name>
+  iface <interface name> inet static
+  address <ip address for this machine>
+  netmask 255.255.255.0
+  ```
