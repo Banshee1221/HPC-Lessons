@@ -34,22 +34,22 @@ In this environment, there is no DHCP (Dynamic Host Configuration Protocol) pres
 
 ### Establishing connectivity
 
-- __Connect the RPi's to the network switch using the twisted-pair copper cables ending in RJ45 connectors__
+- Connect the RPi's to the network switch using the twisted-pair copper cables ending in RJ45 connectors
 
-- __Open a terminal and type in `ip addr`__
+- Open a terminal and type in `ip addr`
 
   - Here you should see a list of network devices. You should see devices like `eth0` (network card 1). *Note down the name of the device you're using.*
 
   - **Challenge: Find out what the `lo` device is.**
 
-- __Run the command__
+- Run the command
   ```
   sudo systemctl disable dhcpcd.service
   sudo systemctl stop dhcpcd.service
   ```
   *Raspbian, the operating system that is on these Pi's, has a service that automatically runs on boot called dhcpcd. This service is used to attempt to get an IP address from a DHCP server. This needs to be disabled so that any static ip addres that is set doesn't get overwritten.*
 
-- __Set up the IP addresses for each Pi manually__
+- Set up the IP addresses for each Pi manually
 
   Open the file `/etc/network/interfaces` in the editor of your choice. In this file you need to make an entry for the network device and the configuration you want to give it.
 
@@ -61,7 +61,10 @@ In this environment, there is no DHCP (Dynamic Host Configuration Protocol) pres
   address <ip address for this machine>
   netmask 255.255.255.0
   ```
-- __Restart the Raspberry Pi.__
+
+- __Challenge: What is netmask?__
+
+- Restart the Raspberry Pi.
 
 Repeat these processes for every one of your Pi's, giving them each a different IP address.
 
@@ -69,7 +72,7 @@ Repeat these processes for every one of your Pi's, giving them each a different 
 
 Most \*nix distributions provide good connectivity tools out-of-the box. In this case, since there are no funny port restrictions on the network, we'll be using the simple `ping` command to test whether each of your Pi's are reachable.
 
-- __Execute the command `ping -c 3 <ip address of Pi>`__
+- Execute the command `ping -c 3 <ip address of Pi>`
 
   If you see soemthing like below, then your connectivity is good.
 
