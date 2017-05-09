@@ -32,7 +32,7 @@ In this environment, there is no DHCP (Dynamic Host Configuration Protocol) pres
 ```
 sudo systemctl disable dhcpcd.service
 sudo systemctl stop dhcpcd.service
-```.
+```
 
   - Raspbian, the operating system that is on these Pi's, has a service that automatically runs on boot called dhcpcd. This service is used to attempt to get an IP address from a DHCP server. This needs to be disabled
 
