@@ -12,6 +12,15 @@ In this exercise, the outcomes are to:
 
 ---
 
+# Table of Contents
+- [Connectivity](#connectivity)
+  - [Establishing Connectivity](#establishing-connectivity)
+  - [Testing Connectivity](#testing-connectivity)
+- [Access](#access)
+  - [Hostnames](#hostnames)
+
+---
+
 ## Connectivity
 
 In this environment, there is no DHCP (Dynamic Host Configuration Protocol) present. DHCP is the protocol that allows operating systems to receive IP addresses from an existing network in order to apply it to   the network card that exists on the machine. Since this is the case, we want to set our own IP addresses for each of the Pi's.
