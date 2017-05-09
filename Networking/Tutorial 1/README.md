@@ -12,11 +12,11 @@ In this exercise, the outcomes are to:
 
 ---
 
-## [Connectivity](#connectivity)
+## Connectivity
 
 In this environment, there is no DHCP (Dynamic Host Configuration Protocol) present. DHCP is the protocol that allows operating systems to receive IP addresses from an existing network in order to apply it to   the network card that exists on the machine. Since this is the case, we want to set our own IP addresses for each of the Pi's.
 
-### [Establishing connectivity](#connectivity-establishing)
+### Establishing connectivity
 
 - __Connect the RPi's to the network switch using the twisted-pair copper cables ending in RJ45 connectors__
 
@@ -49,7 +49,7 @@ In this environment, there is no DHCP (Dynamic Host Configuration Protocol) pres
 
 Repeat these processes for every one of your Pi's, giving them each a different IP address.
 
-### [Testing connectivity](#connectivity-testing)
+### Testing connectivity
 
 Most \*nix distributions provide good connectivity tools out-of-the box. In this case, since there are no funny port restrictions on the network, we'll be using the simple `ping` command to test whether each of your Pi's are reachable.
 
@@ -64,9 +64,9 @@ Most \*nix distributions provide good connectivity tools out-of-the box. In this
   64 bytes from 192.168.142.122: icmp_seq=3 ttl=64 time=0.770 ms
   ```
 
-## [Access](#access)
+## Access
 
-### [Hostnames](#access-hostnames)
+### Hostnames
 
 If you've ever typed in a website name in a web-browser, you've made use of a protocol called DNS, or Domain Name System. What this does is it translates hostnames (e.g. www.google.com) into IP addresses. The illustration below should show you what I mean:
 ```
@@ -80,9 +80,13 @@ Typically, this is set through a DNS server that runs somewhere on a local netwo
 
 Hostnames can also be statically assinged. This is useful when you want to manage a small to medium amount of devices and you don't want to be running a DNS service. In order to do this we follow these steps:
 
+#### Tutorial
+
 - Open the file `/etc/hosts` with the editor of your choice
 
 - Add new lines for each Pi that you want to have a hostname for in the format
  `<ip address>tab<hostname>`
+
+- Use the `ping` command on on the Pi to see if the hostnames work
 
 Repeat this for all the Pi's in your network so that each Pi can have a hostname for each other Pi
