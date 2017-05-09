@@ -18,6 +18,9 @@ In this exercise, the outcomes are to:
   - [Testing Connectivity](#testing-connectivity)
 - [Access](#access)
   - [Hostnames](#hostnames)
+  - [SSH](#ssh)
+    - [SSH Setup](#ssh-setup)
+    - [Passwordless SSH](#passwordless-ssh)
 
 ---
 
@@ -91,7 +94,7 @@ Hostnames can also be statically assinged. This is useful when you want to manag
 
 #### Tutorial
 
-- Open the file `/etc/hosts` with the editor of your choice
+- Open the file `/etc/hosts` as root with the editor of your choice
 
 - Add new lines for each Pi that you want to have a hostname for in the format
  `<ip address>tab<hostname>`
@@ -99,3 +102,52 @@ Hostnames can also be statically assinged. This is useful when you want to manag
 - Use the `ping` command on on the Pi to see if the hostnames work
 
 Repeat this for all the Pi's in your network so that each Pi can have a hostname for each other Pi
+
+### SSH
+
+SSH (Secure Shell) is a way to remotely access a Linux terminal from another terminal to execute commands. SSH requires a service to be running in the background that handles the connections.
+
+#### SSH Setup
+
+- The Raspberry Pi has an SSH service installed already, but it is not activated by default. Activate the service by running
+  ```
+  sudo systemctl enable ssh
+  sudo systemctl start ssh
+  ```
+  (Do this for all of the Pi's)
+
+- Test conenctivity by SSH'ing into each of the Pi's by running `ssh <useraccount>@<ip or hostname>`
+
+#### Passwordless SSH
+
+Managing large amounts of servers using SSH can become cumbersome if you have to type in the password every server all the time. Certain services also demand that you don't have to type the password in. To get around this, we set up a cryptographic link between two machines.
+
+- On the first machine, type in `ssh-keygen` and press enter for all the prompts. You'll see something like this:
+  ```
+  root@raspberrypi:~# ssh-keygen
+  Generating public/private rsa key pair.
+  Enter file in which to save the key (/root/.ssh/id_rsa):
+  Enter passphrase (empty for no passphrase):
+  Enter same passphrase again:
+  Your identification has been saved in /root/.ssh/id_rsa.
+  Your public key has been saved in /root/.ssh/id_rsa.pub.
+  The key fingerprint is:
+  e3:5f:a7:bd:b6:72:bd:84:a7:22:71:62:43:55:94:4c root@raspberrypi
+  The key's randomart image is:
+  +---[RSA 2048]----+
+  |            =E.  |
+  |           . o   |
+  |          .      |
+  |         .       |
+  |        S        |
+  |       . * .  .  |
+  |        o = ...+ |
+  |         o o.+* .|
+  |          o o=++.|
+  +-----------------+
+  ```
+- Now type `ssh-copy-id <username>@<ip or hostname>`, similar to the way that you would ssh to a server.
+
+- Test the connectivity by ssh'ing to the server that you copies your ID to.
+
+If all went well, you should be able to SSH into the server without having to type in the password. Do this from the head Pi to all the node Pi's.
