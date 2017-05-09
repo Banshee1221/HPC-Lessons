@@ -21,6 +21,10 @@ In this exercise, the outcomes are to:
   - [SSH](#ssh)
     - [SSH Setup](#ssh-setup)
     - [Passwordless SSH](#passwordless-ssh)
+  - [Copying Files](#copying-files)
+- [Internet](#internet)
+  - [Gateway](#gateway)
+  - [DNS](#dns)
 
 ---
 
@@ -151,3 +155,54 @@ Managing large amounts of servers using SSH can become cumbersome if you have to
 - Test the connectivity by ssh'ing to the server that you copies your ID to.
 
 If all went well, you should be able to SSH into the server without having to type in the password. Do this from the head Pi to all the node Pi's.
+
+### Copying Files
+
+Sometimes files need to be transfered between machines. We use the `scp` command to do that. This command makes use of the SSH service to transfer files securely across the network.
+
+- Make sure you're in your home directory of the head Pi: `cd ~`
+
+- Create some empty file in your home directory: `touch empty-file.txt`
+
+- Copy the new `empty-file.txt` to one or both of the node Pi's: `scp empty-file.txt <username>@<ip or hostname>`
+
+## Internet
+
+### Gateway
+
+Since the Pi's were not configured with DHCP, they did not get any information about which machine will be providing them with internet access. As per the example before, your home router acts as the DHCP server, but it also provides DNS services and acts as the **gateway** for the devices that connect to it.
+
+The gateway needs to be manually set on the machines:
+
+- __Edit the network interfaces file__
+
+  Open the file `/etc/network/interfaces` again. Go to the line where you added the manual entry for the ip address and netmask. Under that, in the same block, add the IP address of the gateway with the `gateway` section. Ask your tutor for the IP address.
+
+  ```
+  auto <interface name>
+  iface <interface name> inet static
+  address <ip address for this machine>
+  netmask 255.255.255.0
+  gateway <ip address of gateway>
+  ```
+
+- Reboot the Pi
+
+- Test whether you can ping Google's DNS server at 8.8.8.8
+
+Repeat the steps for each Pi.
+
+### DNS
+
+Again, DNS didn't get automatically set due to there being no DHCP server on the network. To set DNS manually (ask your tutor for the IP of the DNS server):
+
+- Edit the `/etc/resolv.conf` file. Empty the file and add an entry `nameserver <ip address of DNS server>`
+
+- Run `chattr +i /etc/resolv.conf`. This makes the file unchangeable, even by root.
+
+- **Challenge: Why did you run the previous command?**
+
+Repeat the steps on all the Pi's.
+
+---
+# DISCLAIMER!!! SOME OF THESE STEPS ARE NOT THE SAME ON EVERY LINUX DISTRIBUTION. THIS IS SPECIFICALLY MADE FOR THE RASPBIAN JESSE DISTRIBUTION
