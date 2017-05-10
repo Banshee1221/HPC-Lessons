@@ -61,7 +61,7 @@ In this environment, there is no DHCP (Dynamic Host Configuration Protocol) pres
   address <ip address for this machine>
   netmask 255.255.255.0
   ```
-  Make sure that the ip adresses are consistent for the first three dots. I.e. have the IPs for each Pi have the same x.x.x.<number>. Only the last dot's number should change. Do not use the 127.0.0.<number> IP since that is considered local only. <Number> can be any number from 1 - 254. Do not have conflicts.
+  Make sure that the ip adresses are consistent for the first three dots. I.e. have the IPs for each Pi have the same x.x.x.\<number>. Only the last dot's number should change. Do not use the 127.0.0.\<number> IP since that is considered local only. \<Number\> can be any number from 1 - 254. Do not have conflicts.
 
 - __Challenge: What is netmask?__
 
