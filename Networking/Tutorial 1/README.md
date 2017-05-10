@@ -172,7 +172,7 @@ Sometimes files need to be transfered between machines. We use the `scp` command
 
 - Create some empty file in your home directory: `touch empty-file.txt`
 
-- Copy the new `empty-file.txt` to one or both of the node Pi's: `scp empty-file.txt <username>@<ip or hostname>"/<directory>`
+- Copy the new `empty-file.txt` to one or both of the node Pi's: `scp empty-file.txt <username>@<ip or hostname>:/<directory>`
 
 ## Internet
 
