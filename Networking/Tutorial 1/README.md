@@ -38,7 +38,7 @@ In this environment, there is no DHCP (Dynamic Host Configuration Protocol) pres
 
 - Open a terminal and type in `ip addr`
 
-  - Here you should see a list of network devices. You should see devices like `eth0` (network card 1). *Note down the name of the device you're using.*
+  - Here you should see a list of network devices. You should see devices like `eth0` (network card 1). Do not use the `lo` device. *Note down the name of the device you're using.*
 
   - **Challenge: Find out what the `lo` device is.**
 
@@ -61,6 +61,7 @@ In this environment, there is no DHCP (Dynamic Host Configuration Protocol) pres
   address <ip address for this machine>
   netmask 255.255.255.0
   ```
+  Make sure that the ip adresses are consistent for the first three dots. I.e. have the IPs for each Pi have the same x.x.x.<number>. Only the last dot's number should change. Do not use the 127.0.0.<number> IP since that is considered local only. <Number> can be any number from 1 - 254. Do not have conflicts.
 
 - __Challenge: What is netmask?__
 
@@ -103,7 +104,7 @@ Hostnames can also be statically assinged. This is useful when you want to manag
 
 - Open the file `/etc/hosts` as root with the editor of your choice
 
-- Add new lines for each Pi that you want to have a hostname for in the format
+- Add new lines for each Pi in your network to give them a hostname in the format
  `<ip address>tab<hostname>`
 
 - Use the `ping` command on on the Pi to see if the hostnames work
