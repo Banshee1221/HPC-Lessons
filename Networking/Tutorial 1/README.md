@@ -160,6 +160,8 @@ Managing large amounts of servers using SSH can become cumbersome if you have to
 
 - Test the connectivity by ssh'ing to the server that you copies your ID to.
 
+- If it works, type `exit` to return to the head node.
+
 If all went well, you should be able to SSH into the server without having to type in the password. Do this from the head Pi to all the node Pi's.
 
 ### Copying Files
