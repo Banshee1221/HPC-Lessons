@@ -130,6 +130,8 @@ SSH (Secure Shell) is a way to remotely access a Linux terminal from another ter
 
 Managing large amounts of servers using SSH can become cumbersome if you have to type in the password every server all the time. Certain services also demand that you don't have to type the password in. To get around this, we set up a cryptographic link between two machines.
 
+- On all the Pi's type `sudo passwd` and give each Pi's `pi` useraccount a password of your choice.
+
 - On the first machine, type in `ssh-keygen` and press enter for all the prompts. You'll see something like this:
   ```
   root@raspberrypi:~# ssh-keygen
